@@ -16,6 +16,7 @@ public class CalculatorActivity extends AppCompatActivity {
     private Button mDotButton;
     private Button mEqualsButton;
     private Button mClearButton;
+    private Button mHistoryButton;
     private Button[] mNumButtons = new Button[10];
     private final int[] mNumButtonIds = {
             R.id.button0,
@@ -27,7 +28,8 @@ public class CalculatorActivity extends AppCompatActivity {
     private double[] numProcess = new double[3]; //Contains the numbers which are to be operated on; the final element determines whether the number to be added to the array goes in the first or second position
     private String operator; //Contains the operator
     private double memory; //Contains the answer obtained from the previous calculation in case the user wishes to do further operations on the answer
-
+    private String[] pushToHistory = new String[3]
+;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Initializes buttons for the operators and the numbers from 0-9
@@ -88,6 +90,19 @@ public class CalculatorActivity extends AppCompatActivity {
                 operator = null;
             }
         });
+
+        mHistoryButton = (Button) findViewById(R.id.button_history);
+        mHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startNewActivity = new Intent(CalculatorActivity.this, HistoryActivity.class);
+                startActivity(startNewActivity);
+            }
+        });
+//        public void History(View view) {
+//            Intent startNewActivity = new Intent(this, HistoryActivity.class);
+//            startActivity(startNewActivity);
+//        }
         mNumButtons = new Button[mNumButtonIds.length];
         numProcess[2] = 0;
         for (int i = 0; i < mNumButtons.length; i++) {
@@ -107,10 +122,5 @@ public class CalculatorActivity extends AppCompatActivity {
                     }
                 });
             }
-        }
-
-        public void History(View view) {
-            Intent startNewActivity = new Intent(this, HistoryActivity.class);
-            startActivity(startNewActivity);
         }
     }
