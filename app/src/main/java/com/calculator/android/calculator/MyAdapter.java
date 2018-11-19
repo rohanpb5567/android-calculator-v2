@@ -32,7 +32,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_text_view, parent, false);
-        ...
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
